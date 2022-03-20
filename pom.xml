@@ -25,6 +25,15 @@
                 <gluonfx.target>linux-aarch64</gluonfx.target>
             </properties>
         </profile>
+        <profile>
+            <id>desktop</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <gluonfx.target>host</gluonfx.target>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -75,8 +84,6 @@
                         <configuration>
                             <mainClass>${module.name}/${main.class}</mainClass>
                             <launcher>VTalk</launcher>
-                            <jlinkZipName>app</jlinkZipName>
-                            <jlinkImageName>app</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
@@ -94,6 +101,7 @@
                 <configuration>
                     <verbose>true</verbose>
                     <target>${gluonfx.target}</target>
+                    <nativeImageArgs>-Dfile.encoding=UTF-8</nativeImageArgs>
                     <mainClass>${module.name}/${main.class}</mainClass>
                 </configuration>
             </plugin>
